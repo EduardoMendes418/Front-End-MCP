@@ -2,6 +2,8 @@
 
 Sistema ERP desenvolvido em **React** com **TypeScript**, oferecendo uma solução integrada para gestão empresarial com interface intuitiva e design responsivo.
 
+<img width="1508" height="929" alt="img-readme" src="https://github.com/user-attachments/assets/bf3035c3-f688-4d5b-9ba9-39d3eeb524c0" />
+
 ---
 
 ## ✨ Características Principais
