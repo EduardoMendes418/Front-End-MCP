@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# ERP Pro Business Suite 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema ERP desenvolvido em **React** com **TypeScript**, oferecendo uma solução integrada para gestão empresarial com interface intuitiva e design responsivo.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características Principais
 
-## React Compiler
+- 🎨 **Interface Moderna** – Design limpo com tema escuro/claro
+- 📱 **Totalmente Responsivo** – Adaptável a todos os dispositivos
+- 🌐 **Internacionalização** – Suporte a múltiplos idiomas (PT, EN, ES)
+- ⚡ **Performance Otimizada** – Carregamento rápido e animações suaves
+- 🔒 **Arquitetura Sólida** – Código limpo e componentes reutilizáveis
+- 📊 **Dashboard Interativo** – Gráficos e métricas em tempo real
+- 🛠 **Fácil Manutenção** – Estrutura modular e bem organizada
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Dashboard
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Visão geral do negócio em tempo real
+- Métricas de vendas, receita e crescimento
+- Gráficos interativos (Receita, Vendas, Distribuição)
+- Atividades recentes e produtos em destaque
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 💰 Gestão de Vendas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Controle completo de pedidos e transações
+- Análise de desempenho de vendas
+- Relatórios de produtos mais vendidos
+- Status de pedidos em tempo real
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 📦 Controle de Estoque
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Gestão de produtos e categorias
+- Alertas de estoque baixo
+- Controle de preços e custos
+- Categorização inteligente
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 👥 Gestão de Clientes
+
+- Cadastro e segmentação de clientes
+- Histórico de compras e interações
+- Análise de valor do cliente (LTV)
+- Gestão de contatos
+
+### 📈 Relatórios & Analytics
+
+- Relatórios personalizáveis
+- Exportação de dados (PDF, Excel)
+- Dashboards analíticos
+- Métricas de performance
+
+### ⚙️ Configurações
+
+- Personalização do sistema
+- Gestão de usuários e permissões
+- Configurações de notificações
+- Tema e aparência
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+### **Frontend**
+
+- React 18
+- TypeScript
+- TailwindCSS
+- Framer Motion
+- React Router
+- Recharts
+
+### **Estado & Gerenciamento**
+
+- Zustand
+- React i18next
+
+### **Ferramentas de Desenvolvimento**
+
+- Vite
+- ESLint
+- PostCSS
+
+---
+
+"""
