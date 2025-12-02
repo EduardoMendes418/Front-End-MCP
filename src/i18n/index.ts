@@ -1,95 +1,93 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
 const resources = {
-  en: {
-    translation: {
-      dashboard: 'Dashboard',
-      sales: 'Sales',
-      inventory: 'Inventory',
-      customers: 'Customers',
-      reports: 'Reports',
-      settings: 'Settings',
-      welcome: 'Welcome back',
-      revenue: 'Revenue',
-      orders: 'Orders',
-      growth: 'Growth',
-      recentActivity: 'Recent Activity',
-      topProducts: 'Top Products',
-      quickStats: 'Quick Stats',
-      search: 'Search...',
-      notifications: 'Notifications',
-      viewAll: 'View All',
-      clearAll: 'Clear All',
-      newUser: 'New User',
-      edit: 'Edit',
-      delete: 'Delete',
-      status: 'Status',
-      actions: 'Actions'
-    }
-  },
-  pt: {
-    translation: {
-      dashboard: 'Painel',
-      sales: 'Vendas',
-      inventory: 'Estoque',
-      customers: 'Clientes',
-      reports: 'Relatórios',
-      settings: 'Configurações',
-      welcome: 'Bem-vindo de volta',
-      revenue: 'Receita',
-      orders: 'Pedidos',
-      growth: 'Crescimento',
-      recentActivity: 'Atividade Recente',
-      topProducts: 'Produtos em Destaque',
-      quickStats: 'Estatísticas Rápidas',
-      search: 'Pesquisar...',
-      notifications: 'Notificações',
-      viewAll: 'Ver Todos',
-      clearAll: 'Limpar Todos',
-      newUser: 'Novo Usuário',
-      edit: 'Editar',
-      delete: 'Excluir',
-      status: 'Status',
-      actions: 'Ações'
-    }
-  },
-  es: {
-    translation: {
-      dashboard: 'Tablero',
-      sales: 'Ventas',
-      inventory: 'Inventario',
-      customers: 'Clientes',
-      reports: 'Reportes',
-      settings: 'Configuraciones',
-      welcome: 'Bienvenido de vuelta',
-      revenue: 'Ingresos',
-      orders: 'Pedidos',
-      growth: 'Crecimiento',
-      recentActivity: 'Actividad Reciente',
-      topProducts: 'Productos Destacados',
-      quickStats: 'Estadísticas Rápidas',
-      search: 'Buscar...',
-      notifications: 'Notificaciones',
-      viewAll: 'Ver Todos',
-      clearAll: 'Limpar Todos',
-      newUser: 'Nuevo Usuario',
-      edit: 'Editar',
-      delete: 'Eliminar',
-      status: 'Estado',
-      actions: 'Acciones'
-    }
-  }
+	en: {
+		translation: {
+			dashboard: "Dashboard",
+			sales: "Sales",
+			inventory: "Inventory",
+			customers: "Customers",
+			reports: "Reports",
+			settings: "Settings",
+			welcome: "Welcome back",
+			revenue: "Revenue",
+			orders: "Orders",
+			growth: "Growth",
+			recentActivity: "Recent Activity",
+			topProducts: "Top Products",
+			quickStats: "Quick Stats",
+			search: "Search...",
+			notifications: "Notifications",
+			viewAll: "View All",
+			clearAll: "Clear All",
+			newUser: "New User",
+			edit: "Edit",
+			delete: "Delete",
+			status: "Status",
+			actions: "Actions",
+		},
+	},
+	pt: {
+		translation: {
+			dashboard: "Painel",
+			sales: "Vendas",
+			inventory: "Estoque",
+			customers: "Clientes",
+			reports: "Relatórios",
+			settings: "Configurações",
+			welcome: "Bem-vindo de volta",
+			revenue: "Receita",
+			orders: "Pedidos",
+			growth: "Crescimento",
+			recentActivity: "Atividade Recente",
+			topProducts: "Produtos em Destaque",
+			quickStats: "Estatísticas Rápidas",
+			search: "Pesquisar...",
+			notifications: "Notificações",
+			viewAll: "Ver Todos",
+			clearAll: "Limpar Todos",
+			newUser: "Novo Usuário",
+			edit: "Editar",
+			delete: "Excluir",
+			status: "Status",
+			actions: "Ações",
+		},
+	},
+	es: {
+		translation: {
+			dashboard: "Tablero",
+			sales: "Ventas",
+			inventory: "Inventario",
+			customers: "Clientes",
+			reports: "Reportes",
+			settings: "Configuraciones",
+			welcome: "Bienvenido de vuelta",
+			revenue: "Ingresos",
+			orders: "Pedidos",
+			growth: "Crecimiento",
+			recentActivity: "Actividad Reciente",
+			topProducts: "Productos Destacados",
+			quickStats: "Estadísticas Rápidas",
+			search: "Buscar...",
+			notifications: "Notificaciones",
+			viewAll: "Ver Todos",
+			clearAll: "Limpar Todos",
+			newUser: "Nuevo Usuario",
+			edit: "Editar",
+			delete: "Eliminar",
+			status: "Estado",
+			actions: "Acciones",
+		},
+	},
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'pt',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+	resources,
+	lng: "pt",
+	interpolation: {
+		escapeValue: false,
+	},
+});
 
 export default i18n;
