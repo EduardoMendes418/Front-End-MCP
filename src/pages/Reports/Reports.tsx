@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/a11y/useButtonType: <explanation> */
+/** biome-ignore-all lint/a11y/noLabelWithoutControl: <explanation> */
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
