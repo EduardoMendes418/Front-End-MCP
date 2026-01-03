@@ -1,5 +1,5 @@
 import type React from "react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { motion } from "framer-motion";
@@ -12,7 +12,9 @@ const colors = {
     bg_end: "#000000",   // Preto
 };
 
-const Background: React.FC = () => {
+type BackgroundProps = {}
+
+const Background: React.FC<BackgroundProps> = () => {
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -43,8 +45,10 @@ const Background: React.FC = () => {
     );
 };
 
+type NetworkGroupProps = {}
+
 // Componente que gerencia um grupo de formas
-const NetworkGroup: React.FC = () => {
+const NetworkGroup: React.FC<NetworkGroupProps> = () => {
     const groupRef = useRef<THREE.Group>(null);
     
     // Cria 30 formas com parâmetros aleatórios
@@ -63,12 +67,12 @@ const NetworkGroup: React.FC = () => {
             Math.random() * 0.005,
             Math.random() * 0.005,
             Math.random() * 0.005
-        ],
+        ] as [number, number, number],
         // Alterna entre as duas cores principais
         color: Math.random() > 0.5 ? colors.primary : colors.secondary
     }));
 
-    useFrame((state) => {
+    useFrame(() => {
         if (!groupRef.current) return;
         
         // Rotação global lenta do grupo inteiro
@@ -87,8 +91,16 @@ const NetworkGroup: React.FC = () => {
     );
 };
 
+interface FloatingShapeProps {
+    position: [number, number, number];
+    scale: number;
+    rotationSpeed: [number, number, number];
+    color: string;
+    // No longer needs isInputFocused
+}
+
 // Uma forma geométrica individual flutuante
-const FloatingShape = ({ position, scale, rotationSpeed, color }: any) => {
+const FloatingShape: React.FC<FloatingShapeProps> = ({ position, scale, rotationSpeed, color }) => {
     const meshRef = useRef<THREE.Mesh>(null);
     
     // Animação individual da forma
