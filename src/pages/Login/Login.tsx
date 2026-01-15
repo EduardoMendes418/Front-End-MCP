@@ -1,17 +1,37 @@
+// biome-ignore assist/source/organizeImports: <explanation>
 import type React from "react";
-import { useState, Suspense } from "react";
+import { useState, Suspense, useCallback, useMemo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuthStore } from "../../stores/authStore";
 import { useNavigate } from "react-router-dom";
-import { Lock, Mail } from "lucide-react";
+import { Globe, Lock, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import Background from "../../components/Background";
+import { useTranslation } from "react-i18next";
 
 const Login: React.FC = () => {
 	const { login } = useAuthStore();
 	const navigate = useNavigate();
 	const [error, setError] = useState<string | null>(null);
+	const { t, i18n } = useTranslation();
+
+	const languages = useMemo(
+		() => [
+			{ code: "pt", name: t("portuguese"), flag: "🇧🇷" },
+			{ code: "en", name: t("english"), flag: "🇺🇸" },
+			{ code: "es", name: t("spanish"), flag: "🇪🇸" },
+			{ code: "de", name: t("german"), flag: "🇩🇪" },
+		],
+		[t],
+	);
+
+	const handleLanguageChange = useCallback(
+		(code: string) => {
+			i18n.changeLanguage(code);
+		},
+		[i18n],
+	);
 
 	const mockUser = {
 		email: "test@test.com",
@@ -26,9 +46,9 @@ const Login: React.FC = () => {
 		},
 		validationSchema: Yup.object({
 			email: Yup.string()
-				.email("Invalid email address")
-				.required("Required"),
-			password: Yup.string().required("Required"),
+				.email(t("invalidEmail"))
+				.required(t("required")),
+			password: Yup.string().required(t("required")),
 		}),
 		onSubmit: (values) => {
 			if (
@@ -38,7 +58,7 @@ const Login: React.FC = () => {
 				login();
 				navigate("/");
 			} else {
-				setError("Invalid email or password");
+				setError(t("invalidCredentials"));
 			}
 		},
 	});
@@ -48,6 +68,43 @@ const Login: React.FC = () => {
 			<Suspense fallback={null}>
 				<Background />
 			</Suspense>
+
+			<div className="absolute top-4 right-4 z-10">
+				<div className="relative group">
+					<button
+						type="button"
+						className="p-2 rounded-xl transition-colors duration-300 hover:bg-white/10 text-white"
+						aria-label="Change language"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						<Globe size={20} />
+					</button>
+					<ul
+						className="absolute right-0 top-full mt-2 w-48 py-2 rounded-xl shadow-2xl border border-white/20 bg-white/5 backdrop-filter backdrop-blur-lg transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+					>
+						{languages.map((lang) => (
+							<li key={lang.code} role="none">
+								<button
+									type="button"
+									role="menuitem"
+									onClick={() => handleLanguageChange(lang.code)}
+									className={`w-full px-4 py-2 text-left transition-colors duration-200 flex items-center space-x-3 ${
+										i18n.language === lang.code
+											? "text-purple-400 font-semibold"
+											: "text-gray-200 hover:text-white"
+									}`}
+								>
+									<span className="text-lg" aria-hidden="true">
+										{lang.flag}
+									</span>
+									<span>{lang.name}</span>
+								</button>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
 			<div className="flex items-center justify-center min-h-screen">
 				<motion.div
 					initial={{ opacity: 0, y: 50 }}
@@ -65,10 +122,10 @@ const Login: React.FC = () => {
 							className="mt-6 text-3xl font-bold text-center text-white"
 							style={{ fontFamily: "'Poppins', sans-serif" }}
 						>
-							Welcome
+							{t("welcome")}
 						</h2>
 						<p className="mt-2 text-center text-gray-400">
-							Enter your credentials to access your account
+							{t("loginSubtitle")}
 						</p>
 					</motion.div>
 
@@ -94,11 +151,11 @@ const Login: React.FC = () => {
 								id="email"
 								name="email"
 								type="email"
-								placeholder="Email"
+								placeholder={t("emailPlaceholder")}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								value={formik.values.email}
-								className="w-full py-4 pl-14 pr-4 text-white placeholder-gray-400 bg-white/10 border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+								className="w-full py-3 pl-14 pr-4 text-white placeholder-gray-400 bg-white/10 border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
 							/>
 						</motion.div>
 						{formik.touched.email && formik.errors.email ? (
@@ -122,11 +179,11 @@ const Login: React.FC = () => {
 								id="password"
 								name="password"
 								type="password"
-								placeholder="Password"
+								placeholder={t("passwordPlaceholder")}
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								value={formik.values.password}
-								className="w-full py-4 pl-14 pr-4 text-white placeholder-gray-400 bg-white/10 border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
+								className="w-full py-3 pl-14 pr-4 text-white placeholder-gray-400 bg-white/10 border-2 border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500"
 							/>
 						</motion.div>
 						{formik.touched.password && formik.errors.password ? (
@@ -153,7 +210,7 @@ const Login: React.FC = () => {
 									htmlFor="rememberMe"
 									className="block ml-2 text-sm text-gray-400"
 								>
-									Remember me
+									{t("rememberMe")}
 								</label>
 							</div>
 							<div className="text-sm">
@@ -161,7 +218,7 @@ const Login: React.FC = () => {
 									href="/forgot-password"
 									className="font-medium text-purple-400 hover:text-purple-300"
 								>
-									Forgot your password?
+									{t("forgotPassword")}
 								</a>
 							</div>
 						</div>
@@ -177,18 +234,18 @@ const Login: React.FC = () => {
 								type="submit"
 								className="w-full px-3 py-3 text-lg font-bold text-white bg-purple-600 border border-transparent rounded-xl shadow-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
 							>
-								Sign In
+								{t("signIn")}
 							</button>
 						</motion.div>
 					</form>
 
 					<p className="mt-8 text-sm text-center text-gray-400">
-						Don't have an account?{" "}
+						{t("noAccount")}{" "}
 						<a
 							href="/signup"
 							className="font-medium text-purple-400 hover:text-purple-300"
 						>
-							Sign up
+							{t("signUp")}
 						</a>
 					</p>
 				</motion.div>
