@@ -1,21 +1,15 @@
 /** biome-ignore-all lint/a11y/useButtonType: <explanation> */
-import React from "react";
+
 import { motion } from "framer-motion";
+import { DollarSign, Eye, ShoppingCart, TrendingUp, Users } from "lucide-react";
+import type React from "react";
 import { useTranslation } from "react-i18next";
-import { useERPStore } from "../stores/erpStore";
 import {
-	TrendingUp,
-	Users,
-	Package,
-	DollarSign,
-	ShoppingCart,
-	Eye,
-} from "lucide-react";
-import {
+	PieChartComponent,
 	RevenueChart,
 	SalesChart,
-	PieChartComponent,
 } from "../components/charts/DashboardCharts";
+import { useERPStore } from "../stores/erpStore";
 
 interface StatCardProps {
 	icon: React.ElementType;
@@ -38,14 +32,14 @@ const StatCard: React.FC<StatCardProps> = ({
 		initial={{ opacity: 0, y: 20 }}
 		animate={{ opacity: 1, y: 0 }}
 		transition={{ delay }}
-		className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+		className="bg-white dark:bg-dark-200 rounded-2xl p-6 shadow-xl border border-primary-100 dark:border-dark-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
 	>
 		<div className="flex items-center justify-between">
 			<div className="flex-1">
 				<p className="text-sm font-medium text-gray-600 dark:text-gray-400">
 					{title}
 				</p>
-				<p className="text-2xl font-bold text-gray-900 dark:text-white mt-1">
+				<p className="text-2xl font-bold text-dark-300 dark:text-white mt-1">
 					{value}
 				</p>
 				{description && (
@@ -65,7 +59,7 @@ const StatCard: React.FC<StatCardProps> = ({
 					</span>
 				</div>
 			</div>
-			<div className="p-3 bg-blue-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
+			<div className="p-3 bg-primary-500 rounded-xl group-hover:scale-110 transition-transform duration-300">
 				<Icon size={24} className="text-white" />
 			</div>
 		</div>
@@ -150,7 +144,7 @@ const Dashboard: React.FC = () => {
 				className="flex items-center justify-between"
 			>
 				<div>
-					<h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+					<h1 className="text-3xl font-bold text-dark-300 dark:text-white">
 						{t("dashboard")}
 					</h1>
 					<p className="text-gray-600 dark:text-gray-400 mt-1">
@@ -162,7 +156,7 @@ const Dashboard: React.FC = () => {
 						<p className="text-sm text-gray-600 dark:text-gray-400">
 							Equipe Online
 						</p>
-						<p className="font-semibold text-gray-900 dark:text-white">
+						<p className="font-semibold text-dark-300 dark:text-white">
 							{users.length} membros
 						</p>
 					</div>
@@ -170,14 +164,14 @@ const Dashboard: React.FC = () => {
 						{users.slice(0, 3).map((user) => (
 							<div
 								key={user.id}
-								className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white dark:border-gray-800"
+								className="w-8 h-8 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white dark:border-dark-200"
 								title={user.name}
 							>
 								{user.avatar}
 							</div>
 						))}
 						{users.length > 3 && (
-							<div className="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 text-xs font-bold border-2 border-white dark:border-gray-800">
+							<div className="w-8 h-8 bg-primary-100 dark:bg-dark-100 rounded-full flex items-center justify-center text-primary-500 dark:text-primary-50 text-xs font-bold border-2 border-white dark:border-dark-200">
 								+{users.length - 3}
 							</div>
 						)}
@@ -186,7 +180,7 @@ const Dashboard: React.FC = () => {
 			</motion.div>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-				{stats.map((stat, index) => (
+				{stats.map((stat, _index) => (
 					<StatCard key={stat.title} {...stat} />
 				))}
 			</div>
@@ -206,13 +200,13 @@ const Dashboard: React.FC = () => {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.8 }}
-						className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-200 dark:border-gray-700 h-full"
+						className="bg-white dark:bg-dark-200 rounded-2xl p-6 shadow-xl border border-primary-100 dark:border-dark-100 h-full"
 					>
 						<div className="flex items-center justify-between mb-6">
-							<h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+							<h3 className="text-lg font-semibold text-dark-300 dark:text-white">
 								{t("recentActivity")}
 							</h3>
-							<button className="text-blue-500 hover:text-blue-600 text-sm font-medium flex items-center space-x-1">
+							<button className="text-secondary-500 hover:text-secondary-600 text-sm font-medium flex items-center space-x-1">
 								<Eye size={16} />
 								<span>Ver tudo</span>
 							</button>
@@ -225,13 +219,13 @@ const Dashboard: React.FC = () => {
 									initial={{ opacity: 0, x: -20 }}
 									animate={{ opacity: 1, x: 0 }}
 									transition={{ delay: activity.id * 0.1 }}
-									className="flex items-center space-x-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-750 rounded-xl transition-colors duration-200 group"
+									className="flex items-center space-x-4 p-4 hover:bg-primary-50 dark:hover:bg-dark-100 rounded-xl transition-colors duration-200 group"
 								>
-									<div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white font-semibold group-hover:scale-110 transition-transform duration-300">
+									<div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center text-white font-semibold group-hover:scale-110 transition-transform duration-300">
 										{activity.id}
 									</div>
 									<div className="flex-1 min-w-0">
-										<p className="font-medium text-gray-900 dark:text-white truncate">
+										<p className="font-medium text-dark-300 dark:text-white truncate">
 											{activity.action}
 										</p>
 										<p className="text-sm text-gray-500 dark:text-gray-400">
@@ -254,28 +248,28 @@ const Dashboard: React.FC = () => {
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 1 }}
-				className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-200 dark:border-gray-700"
+				className="bg-white dark:bg-dark-200 rounded-2xl p-6 shadow-xl border border-primary-100 dark:border-dark-100"
 			>
-				<h3 className="text-lg font-semibold mb-6 text-gray-900 dark:text-white">
+				<h3 className="text-lg font-semibold mb-6 text-dark-300 dark:text-white">
 					{t("topProducts")}
 				</h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
 					{products.map((product) => (
 						<div
 							key={product.id}
-							className="bg-gray-50 dark:bg-gray-750 rounded-xl p-4 hover:shadow-lg transition-all duration-300 group"
+							className="bg-primary-50 dark:bg-dark-100 rounded-xl p-4 hover:shadow-lg transition-all duration-300 group"
 						>
-							<div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold mb-3 group-hover:scale-110 transition-transform duration-300">
+							<div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center text-white font-bold mb-3 group-hover:scale-110 transition-transform duration-300">
 								{product.name.charAt(0)}
 							</div>
-							<h4 className="font-semibold text-gray-900 dark:text-white truncate">
+							<h4 className="font-semibold text-dark-300 dark:text-white truncate">
 								{product.name}
 							</h4>
 							<p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
 								{product.category}
 							</p>
 							<div className="flex items-center justify-between">
-								<span className="text-lg font-bold text-gray-900 dark:text-white">
+								<span className="text-lg font-bold text-dark-300 dark:text-white">
 									R$ {product.price.toLocaleString()}
 								</span>
 								<span
