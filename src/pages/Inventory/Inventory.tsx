@@ -1,9 +1,11 @@
 /** biome-ignore-all lint/a11y/useButtonType: <explanation> */
-import React, { useState } from "react";
+
 import { motion } from "framer-motion";
+import { Filter, Package, Plus, Search } from "lucide-react";
+import type React from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useERPStore } from "../../stores/erpStore";
-import { Package, Plus, Search, Filter } from "lucide-react";
 
 const Inventory: React.FC = () => {
 	const { t } = useTranslation();
