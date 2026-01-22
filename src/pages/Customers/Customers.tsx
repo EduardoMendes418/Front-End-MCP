@@ -1,8 +1,9 @@
 /** biome-ignore-all lint/a11y/useButtonType: <explanation> */
-import React from "react";
+
 import { motion } from "framer-motion";
+import { Mail, MapPin, Phone } from "lucide-react";
+import type React from "react";
 import { useTranslation } from "react-i18next";
-import { Mail, Phone, MapPin } from "lucide-react";
 
 const Customers: React.FC = () => {
 	const { t } = useTranslation();
