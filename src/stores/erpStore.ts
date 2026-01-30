@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { ERPState, User, Product, DashboardData, Notification } from "../types";
+import type {
+	DashboardData,
+	ERPState,
+	Notification,
+	Product,
+	User,
+} from "../types";
 
 export const useERPStore = create<ERPState>()(
 	persist(
