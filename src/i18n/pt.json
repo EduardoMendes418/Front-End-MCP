@@ -37,5 +37,6 @@
 	"spanish": "Espanhol",
 	"german": "Alemão",
 	"welcomeAdmin": "Bem-vindo, Administrador",
-	"loginSubtitleAdmin": "Digite suas credenciais de administrador para acessar o painel"
+	"loginSubtitleAdmin": "Digite suas credenciais de administrador para acessar o painel",
+	"sair": "Sair"
 }
