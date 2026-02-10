@@ -1,68 +1,18 @@
 // biome-ignore assist/source/organizeImports: <explanation>
 // biome-ignore assist/source/organizeImports: <explanation>
 import type React from "react";
-import { useState, Suspense, useCallback, useMemo } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useAuthStore } from "../../stores/authStore";
-import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
 import { Globe, Lock, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import Background from "../../components/Background";
 import { useTranslation } from "react-i18next";
+import { useLoginForm } from "../../hooks/useLoginForm";
+import { useLanguageSwitcher } from "../../hooks/useLanguageSwitcher";
 
 const Login: React.FC = () => {
-	const { login } = useAuthStore();
-	const navigate = useNavigate();
-	const [error, setError] = useState<string | null>(null);
-	const { t, i18n } = useTranslation();
-
-	const languages = useMemo(
-		() => [
-			{ code: "pt", name: t("portuguese"), flag: "🇧🇷" },
-			{ code: "en", name: t("english"), flag: "🇺🇸" },
-			{ code: "es", name: t("spanish"), flag: "🇪🇸" },
-			{ code: "de", name: t("german"), flag: "🇩🇪" },
-		],
-		[t],
-	);
-
-	const handleLanguageChange = useCallback(
-		(code: string) => {
-			i18n.changeLanguage(code);
-		},
-		[i18n],
-	);
-
-	const mockUser = {
-		email: "test@test.com",
-		password: "password",
-	};
-
-	const formik = useFormik({
-		initialValues: {
-			email: "",
-			password: "",
-			rememberMe: false,
-		},
-		validationSchema: Yup.object({
-			email: Yup.string()
-				.email(t("invalidEmail"))
-				.required(t("required")),
-			password: Yup.string().required(t("required")),
-		}),
-		onSubmit: (values) => {
-			if (
-				values.email === mockUser.email &&
-				values.password === mockUser.password
-			) {
-				login();
-				navigate("/");
-			} else {
-				setError(t("invalidCredentials"));
-			}
-		},
-	});
+	const { formik, error } = useLoginForm();
+	const { languages, handleLanguageChange, currentLanguage } = useLanguageSwitcher();
+	const { t } = useTranslation();
 
 	return (
 		<div className="relative min-h-screen bg-gray-900 overflow-hidden">
@@ -91,7 +41,7 @@ const Login: React.FC = () => {
 									role="menuitem"
 									onClick={() => handleLanguageChange(lang.code)}
 									className={`w-full px-4 py-2 text-left transition-colors duration-200 flex items-center space-x-3 ${
-										i18n.language === lang.code
+										currentLanguage === lang.code
 											? "text-purple-400 font-semibold"
 											: "text-gray-200 hover:text-white"
 									}`}
